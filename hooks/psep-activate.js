@@ -28,6 +28,7 @@ Before any response, classify the task into one of three categories:
 - Only add complexity when it solves a real problem
 - Keep execution flow readable
 - If a solution exists without adding abstraction, prefer the simpler version
+- **Safety before style: never break code for cosmetic improvement. Validate reassignment before changing declaration keywords.**
 
 ## Layer model
 

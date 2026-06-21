@@ -158,7 +158,7 @@ Re-invoke /psep audit if the next turn also needs deep analysis.
 **Purpose:** Ensure code is readable, self-explanatory, and consistent without relying on external explanation.
 
 **Naming Convention:**
-- Use **CamelCase** for variables, functions, and classes
+- Use **consistent naming convention** for variables, functions, and classes
 - Names must be **self-explanatory**
 - Avoid cryptic abbreviations
 - Avoid redundant words: `data`, `info`, `value`, `object` (unless necessary)
@@ -166,7 +166,7 @@ Re-invoke /psep audit if the next turn also needs deep analysis.
 
 **Key Rule:** A variable name should explain its purpose without needing comments, but should remain concise.
 
-**Common Violations:** Single-letter variables in non-loop contexts, over-abbreviated names, overly long names, inconsistent naming, misleading names.
+**Common Violations:** Single-letter names in non-loop contexts, over-abbreviated names, overly long names, inconsistent naming, misleading names, blind declaration keyword conversion without checking reassignment.
 
 **Personal Lesson:** Good naming reduces cognitive load more than any comment or documentation. If a name needs explanation, it is not a good name.
 
@@ -244,6 +244,24 @@ Detect and label migration artifacts explicitly:
 
 Mark these as **"transition debt"** — distinct from normal design debt.
 Transition debt requires a migration plan, not a refactor.
+
+### Change Safety Assessment
+
+Before any fix suggestion, validate that it will not break the project.
+
+**Safety Checklist:**
+
+1. **Necessity vs cosmetic:** Is this change needed for correctness, or is it purely stylistic? If cosmetic and risky, skip.
+2. **Breakage analysis:** What could break if this change is applied? Trace all usages of modified symbols.
+3. **Variable reassignment:** When changing a variable declaration keyword, verify reassignment patterns. An immutable declaration requires zero reassignment.
+4. **Mechanical vs semantic:** Is the fix mechanically safe (rename, extract, delete dead code) or does it alter runtime behavior? Flag semantic changes for manual review.
+5. **Testability:** Can the change be verified? If the change cannot be easily tested or verified, flag it.
+
+**Rule:**
+
+> If a change is cosmetic and carries any risk of breakage, skip it.
+> If a change is necessary, validate it won't break first.
+> A broken project with clean code is worse than a working project with messy code.
 
 ---
 

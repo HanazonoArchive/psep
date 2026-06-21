@@ -321,7 +321,7 @@ Good naming reduces cognitive load more than any comment or documentation.
 
 ## Naming Convention
 
-* Use **CamelCase** for variables, functions, and classes
+* Use **consistent naming convention** for variables, functions, and classes
 * Names must be **self-explanatory**
 * Avoid cryptic abbreviations
 * Avoid redundant words: `data`, `info`, `value`, `object` (unless necessary)
@@ -341,12 +341,13 @@ Good naming reduces cognitive load more than any comment or documentation.
 
 ## Common Violations
 
-* Single-letter variables in non-loop contexts (`d`, `x`, `tmp`)
+* Single-letter names in non-loop contexts (`d`, `x`, `tmp`)
 * Over-abbreviated names (`usrMgr`, `cfgData`)
 * Overly long names (`getUserAuthenticationTokenFromDatabaseService`)
 * Inconsistent naming styles across the codebase
 * Misleading names that don't match behavior
 * Redundant suffixes (`Data`, `Info`, `Value`, `Object`)
+* Blind declaration keyword conversion without checking reassignment
 
 ## Personal Lesson
 
@@ -355,6 +356,31 @@ Code is read far more often than it is written.
 Good naming reduces cognitive load more than any comment or documentation.
 
 If a name needs explanation, it is not a good name.
+
+---
+
+# Change Safety
+
+## Purpose
+
+Ensure suggested changes do not introduce runtime errors or regressions.
+Safety comes before style.
+
+## Safety Checklist
+
+Before recommending any change, verify:
+
+1. **Is this change necessary or cosmetic?** Cosmetic changes that risk breakage should be skipped.
+2. **What could break if applied blindly?** Trace all usages of the modified code.
+3. **Variable reassignment:** If changing a variable declaration keyword, verify the variable is never reassigned. If it is reassigned, use a mutable declaration.
+4. **Is the fix mechanically safe to apply or does it need manual review?** Mechanical changes (rename, extract) are safer than semantic changes.
+5. **Does this change alter runtime behavior or only code style?** If runtime behavior changes, flag for manual review.
+
+## Key Rule
+
+> If a change is cosmetic and carries any risk of breakage, skip it.
+> If a change is necessary, validate it won't break first.
+> A broken project with clean code is worse than a working project with messy code.
 
 ---
 

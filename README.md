@@ -34,6 +34,7 @@ If uncertain, default to IMPLEMENTATION. PSEP is opt-in, not opt-out.
 - Only add complexity when it solves a real problem
 - Keep execution flow readable
 - If a solution exists without adding abstraction, prefer the simpler version
+- Safety before style: never break code for cosmetic improvement
 ```
 
 ### On-demand layers (per-turn, stateless)
@@ -73,7 +74,7 @@ v1.0 remains the default. Behavior differences between versions are intentional 
 | 4 | Practicality | Is this complexity justified? Is there a simpler solution? |
 | 5 | Straightforward Design | Can I follow the execution path easily? |
 | 6 | Separation of Concerns | Does each component have one responsibility? |
-| 7 | Coding Style | Are names self-explanatory, CamelCase, 2-5 words, no abbreviations? |
+| 7 | Coding Style | Are names self-explanatory, consistent convention, 2-5 words, no abbreviations? |
 
 Guiding Rule: **Complexity must justify its existence.** "We might need it later" is not justification.
 

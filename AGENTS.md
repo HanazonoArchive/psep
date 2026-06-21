@@ -25,6 +25,8 @@ If uncertain, default to IMPLEMENTATION. PSEP is opt-in, not opt-out.
 - PSEP relaxed = checklist ONLY. Output format: Q#: Yes/No. No explanations, no commentary.
 - If task is simple, default to Ponytail + CodingStyle only.
   Do not invoke PSEP unless structural decisions are required.
+- **Safety before style:** never suggest cosmetic changes that risk breakage.
+  Validate declaration keyword conversions by checking reassignment first.
 
 ## Layer model
 

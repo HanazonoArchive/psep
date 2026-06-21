@@ -21,7 +21,7 @@ Q3 (Maintainability): Can another developer understand it quickly? [Yes/No]
 Q4 (Practicality): Is this complexity justified? Is there a simpler solution? [Yes/No]
 Q5 (Straightforward Design): Can I follow the execution path easily? [Yes/No]
 Q6 (Separation of Concerns): Does each component have one responsibility? [Yes/No]
-Q7 (Coding Style): Are names self-explanatory, CamelCase, 2-5 words, no abbreviations? [Yes/No]
+Q7 (Coding Style): Are names self-explanatory, consistent convention, 2-5 words, no abbreviations? [Yes/No]
 
 Guiding Rule: Does this complexity justify its existence? [Yes/No]`;
 
