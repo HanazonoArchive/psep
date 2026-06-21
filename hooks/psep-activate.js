@@ -62,3 +62,4 @@ binary checklist (Yes/No only, no explanations, no commentary).`;
 
 // emit as SessionStart hook output — Claude Code reads stdout
 process.stdout.write(PSEP_INSTINCT);
+process.exit(0);

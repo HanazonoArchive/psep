@@ -113,6 +113,7 @@ The larger it became, the harder it became to navigate.
 * Does this module have a clearly defined purpose?
 * Can this component be understood independently?
 * Is this file becoming too large?
+* Can this component be tested in isolation without complex mocking?
 
 ## Common Violations
 
@@ -121,6 +122,7 @@ The larger it became, the harder it became to navigate.
 * God Objects / God Classes
 * Features tightly embedded into existing code
 * Modules that cannot be reused independently
+* Highly coupled code that is impossible to unit-test
 
 ## Personal Lesson
 
@@ -237,6 +239,8 @@ The system works, but understanding the flow becomes exhausting.
 * Can I identify where the flow ends?
 * Can I follow the execution path easily?
 * Does the logic flow naturally?
+* Are side effects localized and obvious?
+* Can this function or component be stateless?
 * Would a new developer understand the process quickly?
 
 ## Common Violations
@@ -247,6 +251,7 @@ The system works, but understanding the flow becomes exhausting.
 * Hidden execution paths
 * Overuse of abstractions
 * Logic scattered across unrelated modules
+* Unnecessary reliance on global or external mutated state
 
 ## Personal Lesson
 
@@ -373,8 +378,11 @@ Before recommending any change, verify:
 1. **Is this change necessary or cosmetic?** Cosmetic changes that risk breakage should be skipped.
 2. **What could break if applied blindly?** Trace all usages of the modified code.
 3. **Variable reassignment:** If changing a variable declaration keyword, verify the variable is never reassigned. If it is reassigned, use a mutable declaration.
-4. **Is the fix mechanically safe to apply or does it need manual review?** Mechanical changes (rename, extract) are safer than semantic changes.
-5. **Does this change alter runtime behavior or only code style?** If runtime behavior changes, flag for manual review.
+4. **Extraction integrity:** If moving or extracting code, verify that all imports, exports, and consuming files are updated.
+5. **Dynamic usage:** Before deleting "dead" code or renaming fields, verify it isn't invoked implicitly (e.g., via dynamic object keys, API payloads, or external systems).
+6. **Asynchronous boundaries:** If introducing `async` or Promises, verify that the parent caller chain properly awaits the result.
+7. **Is the fix mechanically safe to apply or does it need manual review?** Mechanical changes (rename, extract) are safer than semantic changes.
+8. **Does this change alter runtime behavior or only code style?** If runtime behavior changes, flag for manual review.
 
 ## Key Rule
 
@@ -423,3 +431,15 @@ Software should be built for growth, but not at the expense of clarity, practica
 The best architecture is not the most advanced architecture.
 
 **The best architecture is the simplest architecture that can support the system's future growth.**
+
+---
+
+# Output Format
+
+When providing a design review or architectural feedback under PSEP, use concise bullet points. Structure your response as:
+
+- **Structural Observations:** How the code aligns with or violates the 7 principles.
+- **Simplification Opportunities:** Where unnecessary complexity or state can be removed.
+- **Actionable Steps:** Concrete, mechanically safe refactoring recommendations.
+
+Avoid long philosophical essays. Be direct.

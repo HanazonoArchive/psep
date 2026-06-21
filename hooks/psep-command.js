@@ -32,8 +32,8 @@ process.stdin.on('end', () => {
     const data = JSON.parse(input.replace(/^﻿/, ''));
     const prompt = (data.prompt || '').trim();
 
-    // Match /psep, /psep strict, /psep relaxed, /psep:strict, /psep:relaxed, /psep audit, /psep:audit
-    const match = prompt.match(/^\/psep[:\s]*(strict|relaxed|audit)?/i);
+    // Match /psep, /psep strict, /psep relaxed, /psep:strict, /psep:relaxed, /psep audit, /psep-audit (allow inline)
+    const match = prompt.match(/(?:^|\s)\/psep[:\s\-]*(strict|relaxed|audit)?/i);
     if (!match) {
       process.exit(0);
     }

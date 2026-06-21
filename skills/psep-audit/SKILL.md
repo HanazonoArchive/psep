@@ -73,8 +73,9 @@ Re-invoke /psep audit if the next turn also needs deep analysis.
 - Does this module have a clearly defined purpose?
 - Can this component be understood independently?
 - Is this file becoming too large?
+- Can this component be tested in isolation without complex mocking?
 
-**Common Violations:** Massive files containing unrelated logic, components with multiple responsibilities, God Objects / God Classes, features tightly embedded into existing code.
+**Common Violations:** Massive files containing unrelated logic, components with multiple responsibilities, God Objects / God Classes, features tightly embedded into existing code, highly coupled code that is impossible to unit-test.
 
 **Personal Lesson:** If a component becomes difficult to mentally navigate, it is likely time to split it.
 
@@ -127,9 +128,10 @@ Re-invoke /psep audit if the next turn also needs deep analysis.
 - Can I identify where the flow starts and ends?
 - Can I follow the execution path easily?
 - Does the logic flow naturally?
+- Are side effects localized and obvious? Can this be stateless?
 - Would a new developer understand the process quickly?
 
-**Common Violations:** Excessive indirection, deep dependency chains, circular dependencies, hidden execution paths, overuse of abstractions.
+**Common Violations:** Excessive indirection, deep dependency chains, circular dependencies, hidden execution paths, overuse of abstractions, unnecessary reliance on global or external mutated state.
 
 **Personal Lesson:** A developer should be able to trace a feature from start to finish without feeling lost.
 
@@ -254,8 +256,11 @@ Before any fix suggestion, validate that it will not break the project.
 1. **Necessity vs cosmetic:** Is this change needed for correctness, or is it purely stylistic? If cosmetic and risky, skip.
 2. **Breakage analysis:** What could break if this change is applied? Trace all usages of modified symbols.
 3. **Variable reassignment:** When changing a variable declaration keyword, verify reassignment patterns. An immutable declaration requires zero reassignment.
-4. **Mechanical vs semantic:** Is the fix mechanically safe (rename, extract, delete dead code) or does it alter runtime behavior? Flag semantic changes for manual review.
-5. **Testability:** Can the change be verified? If the change cannot be easily tested or verified, flag it.
+4. **Extraction integrity:** If moving or extracting code, verify that all imports, exports, and consuming files are updated.
+5. **Dynamic usage:** Before deleting "dead" code or renaming fields, verify it isn't invoked implicitly (e.g., via dynamic object keys, API payloads, or external systems).
+6. **Asynchronous boundaries:** If introducing `async` or Promises, verify that the parent caller chain properly awaits the result.
+7. **Mechanical vs semantic:** Is the fix mechanically safe (rename, extract, delete dead code) or does it alter runtime behavior? Flag semantic changes for manual review.
+8. **Testability:** Can the change be verified? If the change cannot be easily tested or verified, flag it.
 
 **Rule:**
 

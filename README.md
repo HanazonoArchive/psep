@@ -58,11 +58,12 @@ migration awareness, use v1.1 audit mode:
 
 | Version | Command | Use case | Features |
 |---------|---------|----------|----------|
-| **v1.0 (Stable Core)** | `/psep` / `/psep strict` | Daily design decisions, code review | 7 principles + Decision Framework + Guiding Rule. Minimal, stable, default. |
+| **v1.0 (Relaxed)** | `/psep` / `/psep relaxed` | Quick checklist | 7 binary Yes/No questions. Minimal, default. |
+| **v1.0 (Stable Core)** | `/psep strict` | Daily design decisions, code review | 7 principles + Decision Framework + Guiding Rule. |
 | **v1.1 (Audit Mode)** | `/psep audit` | Deep architecture audit, stress-testing | v1.0 + severity ranking + impact/effort estimation + migration awareness + prioritization. Optional enhanced layer. |
 
 v1.1 is NOT a replacement for v1.0. It is an optional enhancement for deep analysis.
-v1.0 remains the default. Behavior differences between versions are intentional and testable.
+v1.0 relaxed remains the default. Behavior differences between versions are intentional and testable.
 
 ## The 7 Principles
 
