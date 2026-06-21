@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "psep",
+  "description": "Practical Software Engineering Principles for Claude Code. A controlled reasoning system for architecture, design, and code review. Never active during implementation — only when you need architectural judgment.",
+  "owner": {
+    "name": "Jay Mark Agsoy (HanazonoArchive)",
+    "url": "https://github.com/HanazonoArchive"
+  },
+  "plugins": [
+    {
+      "name": "psep",
+      "description": "7 principles for architecture, design, and code review. /psep strict for full principles + decision framework, /psep relaxed for 7-question binary checklist. Stateless, scoped to design/review/refactor/architecture only.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

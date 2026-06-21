@@ -1,0 +1,24 @@
+name: Publish to Claude Code Marketplace
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate plugin structure
+        run: |
+          test -f .claude-plugin/plugin.json || { echo "Missing plugin.json"; exit 1; }
+          test -f .claude-plugin/marketplace.json || { echo "Missing marketplace.json"; exit 1; }
+          test -f hooks/psep-activate.js || { echo "Missing psep-activate.js"; exit 1; }
+          test -f hooks/psep-command.js || { echo "Missing psep-command.js"; exit 1; }
+          test -f skills/psep/SKILL.md || { echo "Missing SKILL.md"; exit 1; }
+          echo "All checks passed."
+      - name: Publish placeholder
+        run: |
+          echo "Publish step — configure marketplace API token in repo secrets."
+          echo "See: https://docs.anthropic.com/en/docs/claude-code/plugins"
