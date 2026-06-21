@@ -60,6 +60,17 @@ When decision layers conflict on the same decision:
 - Caveman always governs presentation — never overridden.
 - CodingStyle always applies — readable code is non-negotiable.
 
+## Versions
+
+| Version | Command | Use case | Features |
+|---------|---------|----------|----------|
+| v1.0 (Stable Core) | `/psep` / `/psep strict` | Daily design review | 7 principles + Decision Framework |
+| v1.1 (Audit Mode) | `/psep audit` | Deep architecture stress-test | v1.0 + severity + prioritization + migration detection |
+
+v1.1 is NOT a replacement for v1.0. It is an optional enhancement.
+Do NOT merge rule sets between versions.
+Keep /psep strict returning v1.0 content and /psep audit returning v1.1 content.
+
 ## Anti-overengineering
 
 If a solution exists without adding abstraction, prefer the simpler version.
