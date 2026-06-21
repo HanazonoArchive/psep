@@ -1,6 +1,6 @@
 {
   "name": "psep",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Practical Software Engineering Principles — 7 principles (Scalability, Modularity, Maintainability, Practicality, Straightforward Design, Separation of Concerns, Coding Style) as a controlled reasoning system. Only active during design, review, refactor, and architecture. Never during implementation.",
   "author": {
     "name": "Jay Mark Agsoy (HanazonoArchive)",
